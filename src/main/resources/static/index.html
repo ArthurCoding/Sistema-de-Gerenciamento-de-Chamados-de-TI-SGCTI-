@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SGCTI – Chamados de TI</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6f5;--sf:#fff;--ink:#14262b;--mut:#5b6f74;--ln:#d9e2e0;--br:#1e5aa8;--gr:#1f8a5b;--hd:#14303a;--er:#b3261e;--a:#1e5aa8;--e:#a96a00;--r:#17754b;--c:#5b6f74;color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a1d;--sf:#16262a;--ink:#e6efed;--mut:#93a8ad;--ln:#2a3d42;--br:#6fa8ee;--gr:#4cc08c;--hd:#0a1316;--er:#ff8a80;--a:#6fa8ee;--e:#e8b44c;--r:#4cc08c;--c:#9aa9ad;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1a1d;--sf:#16262a;--ink:#e6efed;--mut:#93a8ad;--ln:#2a3d42;--br:#6fa8ee;--gr:#4cc08c;--hd:#0a1316;--er:#ff8a80;--a:#6fa8ee;--e:#e8b44c;--r:#4cc08c;--c:#9aa9ad;color-scheme:dark}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+header{background:var(--hd);color:#e9f2f0;display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px;padding:10px 20px}
+.brand{font-weight:700;font-size:18px;letter-spacing:.2px}.brand small{font-weight:400;opacity:.7;margin-left:8px;font-size:12px}
+nav{display:flex;gap:4px;flex:1;overflow-x:auto;max-width:100%}
+nav button{background:none;border:0;color:#bcd0cd;padding:8px 12px;border-radius:6px;cursor:pointer;white-space:nowrap}
+nav button[aria-current=page]{background:#ffffff1f;color:#fff;font-weight:600}
+.who{font-size:13px;display:flex;align-items:center;gap:10px}
+main{max-width:1080px;margin:0 auto;padding:22px 20px 60px}
+h1{font-size:24px;margin:0 0 4px}h2{font-size:17px;margin:0 0 10px}
+.sub{color:var(--mut);margin:0 0 18px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:14px}
+.bar label{display:flex;flex-direction:column;font-size:12px;color:var(--mut);gap:3px}
+.bar .sp{flex:1}
+input,select,textarea{background:var(--sf);border:1px solid var(--ln);border-radius:6px;padding:8px 10px;width:100%}
+.bar input,.bar select{width:auto;min-width:130px}
+:focus-visible{outline:2px solid var(--br);outline-offset:2px}
+.btn{background:var(--gr);color:#fff;border:0;border-radius:6px;padding:9px 16px;font-weight:600;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}.btn.ghost{background:none;color:var(--ink);border:1px solid var(--ln)}
+.btn.dan{background:var(--er);color:#fff}.btn.sm{padding:5px 10px;font-size:13px}.btn:disabled{opacity:.45;cursor:not-allowed}
+.seg{display:inline-flex;border:1px solid var(--ln);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.seg button{background:var(--sf);border:0;padding:8px 16px;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--hd);color:#fff}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kpi b{display:block;font-size:30px;line-height:1.1}.kpi span{color:var(--mut);font-size:13px}
+.kpi{border-left:5px solid var(--k,var(--ln))}
+.wrap{overflow-x:auto;background:var(--sf);border:1px solid var(--ln);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--ln);vertical-align:top}
+th{font-size:12px;color:var(--mut);font-weight:600;background:color-mix(in srgb,var(--ln) 30%,transparent)}
+tr:last-child td{border-bottom:0}
+.lnk{background:none;border:0;padding:0;color:var(--br);cursor:pointer;font-weight:600;text-align:left}
+.lnk:hover{text-decoration:underline}
+.tag{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;font-weight:600;color:var(--k);background:color-mix(in srgb,var(--k) 15%,transparent);white-space:nowrap}
+.sa{--k:var(--a)}.se{--k:var(--e)}.sr{--k:var(--r)}.sc{--k:var(--c)}.pa{--k:var(--er)}.pm{--k:var(--e)}.pb{--k:var(--c)}
+.empty{padding:28px;text-align:center;color:var(--mut)}
+.bars div{display:grid;grid-template-columns:120px 1fr 30px;gap:10px;align-items:center;margin:7px 0;font-size:14px}
+.bars i{display:block;height:12px;border-radius:6px;background:var(--k);min-width:3px}
+#M{position:fixed;inset:0;background:#0009;display:flex;align-items:flex-start;justify-content:center;padding:5vh 14px;overflow:auto;z-index:9}
+#M[hidden]{display:none}
+.dlg{background:var(--sf);border-radius:12px;width:100%;max-width:560px;padding:20px}
+.dlg h2{margin-bottom:12px}
+form label{display:block;font-size:13px;color:var(--mut);margin-bottom:12px}
+form label>*{margin-top:4px;color:var(--ink)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin-top:8px}
+.err{color:var(--er);min-height:1.2em;margin:0 0 6px;font-size:14px}
+dl{display:grid;grid-template-columns:130px 1fr;gap:6px 12px;margin:0 0 12px}dt{color:var(--mut);font-size:13px}dd{margin:0}
+.tl{list-style:none;padding:0;margin:0 0 12px;border-left:2px solid var(--ln)}
+.tl li{padding:0 0 8px 12px;font-size:14px}.tl small{color:var(--mut);display:block}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--hd);color:#fff;padding:10px 18px;border-radius:8px;z-index:20}
+#toast[hidden]{display:none}
+.login{max-width:400px;margin:10vh auto}
+.login .card{padding:24px}
+#relOut{margin-top:18px}
+.rh{display:none}
+@media print{header,.noprint,#M,#toast{display:none!important}body{background:#fff;color:#000}main{padding:0;max-width:none}.wrap,.card{border:0}.rh{display:block;margin-bottom:12px}:root{padding:0}}
+@media(prefers-reduced-motion:no-preference){.dlg{animation:in .15s ease-out}@keyframes in{from{transform:translateY(8px);opacity:0}}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="M" hidden role="dialog" aria-modal="true" aria-labelledby="mt"><div class="dlg"><h2 id="mt"></h2><div id="mb"></div></div></div>
+<div id="toast" hidden role="status"></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad=n=>String(n).padStart(2,'0');
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+const ago=n=>{const d=new Date();d.setDate(d.getDate()-n);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+const fd=s=>s?s.slice(8,10)+'/'+s.slice(5,7)+'/'+s.slice(0,4):'—';
+const fdt=s=>{const d=new Date(s);return isNaN(d)?'':d.toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'})};
+const ST=['Aberto','Em Atendimento','Resolvido','Cancelado'],PR=['Baixa','Média','Alta'],ACT=['Aberto','Em Atendimento'];
+const SK={'Aberto':'sa','Em Atendimento':'se','Resolvido':'sr','Cancelado':'sc'},PK={'Alta':'pa','Média':'pm','Baixa':'pb'};
+let db={tec:[],usr:[],cha:[]};
+const save=()=>{};
+async function api(m,u,b){const h={'Content-Type':'application/json'};if(S.u){h['X-Perfil']=S.u.role;h['X-Id']=S.u.id}
+let r;try{r=await fetch('/api'+u,{method:m,headers:h,body:b?JSON.stringify(b):undefined})}catch(e){throw new Error('Não foi possível conectar ao servidor.')}
+let j=null;try{j=await r.json()}catch(e){}
+if(!r.ok)throw new Error((j&&j.erro)||'Erro '+r.status);return j}
+const load=async()=>{db=await api('GET','/dados')};
+const ok=(m)=>()=>{if(m)toast(m);return null};
+const S={u:null,p:'dash',v:'a',f:{},rel:null};
+const tn=id=>{const t=db.tec.find(x=>x.id===id);return t?t.nome:'Sem técnico'};
+const un=id=>{const u=db.usr.find(x=>x.id===id);return u?u.nome:'—'};
+const getC=id=>db.cha.find(c=>c.id===id);
+const log=(c,t)=>c.hist.push({d:new Date().toISOString(),t:t});
+const vis=()=>S.u.role==='usr'?db.cha.filter(c=>c.usr===S.u.id):db.cha;
+function filt(l,f){const q=(f.q||'').toLowerCase();return l.filter(c=>(!f.status||c.status===f.status)&&(!f.tec||(f.tec==='0'?!c.tec:String(c.tec)===f.tec))&&(!f.de||c.abertura>=f.de)&&(!f.ate||c.abertura<=f.ate)&&(!q||(c.titulo+' '+c.desc).toLowerCase().includes(q)))}
+function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,3200)}
+function cpfOk(s){s=s.replace(/\D/g,'');if(s.length!==11||/^(\d)\1+$/.test(s))return false;for(let t=9;t<11;t++){let d=0;for(let i=0;i<t;i++)d+=s[i]*(t+1-i);d=(d*10)%11%10;if(+s[t]!==d)return false}return true}
+const MK={cpf:v=>{const d=v.replace(/\D/g,'').slice(0,11);return d.slice(0,3)+(d.length>3?'.'+d.slice(3,6):'')+(d.length>6?'.'+d.slice(6,9):'')+(d.length>9?'-'+d.slice(9):'')},
+tel:v=>{const d=v.replace(/\D/g,'').slice(0,11);if(d.length<3)return d;const c=d.length>10?7:6;return '('+d.slice(0,2)+') '+d.slice(2,c)+(d.length>c?'-'+d.slice(c):'')}};
+/* ---------- modal ---------- */
+let nx=null;
+function modal(t,b,ok,lbl){$('#mt').textContent=t;
+$('#mb').innerHTML='<form id="mf" novalidate>'+b+'<p class="err" id="err" role="alert"></p><div class="acts"><button type="button" class="btn ghost" data-act="close">'+(ok?'Cancelar':'Fechar')+'</button>'+(ok?'<button class="btn">'+(lbl||'Salvar')+'</button>':'')+'</div></form>';
+$('#M').hidden=false;
+$('#mf').onsubmit=e=>{e.preventDefault();if(!ok)return;const o=Object.fromEntries(new FormData(e.target));Promise.resolve(ok(o)).then(r=>{if(r)$('#err').textContent=r;else closeM()})};
+const f=$('#mf').querySelector('input,select,textarea');if(f)f.focus()}
+function closeM(){$('#M').hidden=true;render();if(nx){const f=nx;nx=null;f()}}
+function conf(t,m,fn,l){modal(t,'<p>'+m+'</p>',o=>fn()||null,l||'Confirmar')}
+function fld(f,v){const x=esc(v==null?'':v);
+if(f.t==='select')return '<label>'+f.l+'<select name="'+f.k+'">'+f.o.map(o=>'<option value="'+esc(o[0])+'"'+(String(o[0])===String(v==null?'':v)?' selected':'')+'>'+esc(o[1])+'</option>').join('')+'</select></label>';
+if(f.t==='area')return '<label>'+f.l+'<textarea name="'+f.k+'" rows="4">'+x+'</textarea></label>';
+return '<label>'+f.l+'<input name="'+f.k+'" value="'+x+'"'+(f.m?' data-m="'+f.m+'"':'')+' type="'+(f.t||'text')+'" autocomplete="off"></label>'}
+/* ---------- cadastros (técnicos / usuários) ---------- */
+const CR={tec:{t:'Técnicos',s:'técnico',f:[{k:'nome',l:'Nome completo'},{k:'cpf',l:'CPF',m:'cpf'},{k:'esp',l:'Especialidade'},{k:'email',l:'E-mail',t:'email'},{k:'tel',l:'Telefone',m:'tel'}]},
+usr:{t:'Usuários solicitantes',s:'usuário',f:[{k:'nome',l:'Nome completo'},{k:'setor',l:'Setor'},{k:'email',l:'E-mail',t:'email'},{k:'tel',l:'Telefone',m:'tel'}]}};
+function val(k,o,id){if(o.nome.trim().length<3)return 'Informe o nome completo.';
+if(k==='tec'){if(!cpfOk(o.cpf))return 'CPF inválido. Confira os 11 dígitos.';if(db.tec.some(t=>t.cpf===o.cpf&&t.id!==id))return 'Já existe um técnico com este CPF.';if(!o.esp.trim())return 'Informe a especialidade.'}
+else if(!o.setor.trim())return 'Informe o setor.';
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(o.email.trim()))return 'E-mail inválido.';
+if(o.tel.replace(/\D/g,'').length<10)return 'Telefone inválido. Use DDD e número.'}
+function pgCrud(k){const c=CR[k],L=db[k];
+return '<div class="bar"><div><h1>'+c.t+'</h1><p class="sub" style="margin:0">'+L.length+' cadastrado(s)</p></div><span class="sp"></span><button class="btn" data-act="new" data-k="'+k+'">Novo '+c.s+'</button></div>'+
+'<div class="wrap">'+(L.length?'<table><thead><tr>'+c.f.map(f=>'<th>'+f.l+'</th>').join('')+'<th></th></tr></thead><tbody>'+L.map(r=>'<tr>'+c.f.map(f=>'<td>'+esc(r[f.k])+'</td>').join('')+'<td style="white-space:nowrap"><button class="btn ghost sm" data-act="ed" data-k="'+k+'" data-id="'+r.id+'">Editar</button> <button class="btn ghost sm" data-act="del" data-k="'+k+'" data-id="'+r.id+'">Excluir</button></td></tr>').join('')+'</tbody></table>':'<p class="empty">Nenhum '+c.s+' cadastrado. Use o botão acima para cadastrar.</p>')+'</div>'}
+function formCrud(k,id){const c=CR[k],r=id?db[k].find(x=>x.id===id):null;
+modal((r?'Editar ':'Novo ')+c.s,c.f.map(f=>fld(f,r&&r[f.k])).join(''),o=>{
+const e=val(k,o,id);if(e)return e;
+const d={};c.f.forEach(f=>d[f.k]=o[f.k].trim());
+return api(r?'PUT':'POST','/'+(k==='tec'?'tecnicos':'usuarios')+(r?'/'+id:''),d).then(load).then(ok(r?'Cadastro atualizado.':'Cadastro criado.')).catch(e=>e.message)})}
+/* ---------- chamados ---------- */
+function cFields(c){const adm=S.u.role==='adm';
+let f=[{k:'titulo',l:'Título'},{k:'desc',l:'Descrição do problema',t:'area'},{k:'prio',l:'Prioridade',t:'select',o:PR.map(p=>[p,p]),v:'Média'}];
+if(adm){f.push({k:'usr',l:'Usuário solicitante',t:'select',o:[['','Selecione…']].concat(db.usr.map(u=>[u.id,u.nome]))});
+f.push({k:'tec',l:'Técnico responsável',t:'select',o:[['','Sem técnico']].concat(db.tec.map(t=>[t.id,t.nome]))})}
+return f}
+function formC(id){const c=id?getC(id):null;
+modal(c?'Editar chamado #'+c.id:'Abrir chamado',cFields(c).map(f=>fld(f,c?c[f.k]:f.v)).join(''),o=>{
+const adm=S.u.role==='adm';
+if(o.titulo.trim().length<5)return 'O título precisa ter ao menos 5 caracteres.';
+if(o.desc.trim().length<10)return 'Descreva o problema com ao menos 10 caracteres.';
+const usr=adm?+o.usr:S.u.id;if(!usr)return 'Selecione o usuário solicitante.';
+const tec=adm?(o.tec?+o.tec:null):(c?c.tec:null);
+if(c&&c.status==='Em Atendimento'&&!tec)return 'Chamado em atendimento precisa de um técnico responsável.';
+return api(c?'PUT':'POST','/chamados'+(c?'/'+c.id:''),{titulo:o.titulo.trim(),desc:o.desc.trim(),prio:o.prio,usr:usr,tec:tec}).then(load).then(ok(c?'Chamado atualizado.':'Chamado registrado com status Aberto.')).catch(e=>e.message)})}
+const tag=(c)=>'<span class="tag '+SK[c.status]+'">'+c.status+'</span>';
+const ptag=p=>'<span class="tag '+PK[p]+'">'+p+'</span>';
+function pgCha(){const adm=S.u.role==='adm',usr=S.u.role==='usr',sts=S.v==='a'?ACT:['Resolvido','Cancelado'];
+return '<div class="bar"><div><h1>'+(usr?'Meus chamados':'Chamados')+'</h1><p class="sub" style="margin:0" id="cnt"></p></div><span class="sp"></span>'+((adm||usr)?'<button class="btn" data-act="newc">Abrir chamado</button>':'')+'</div>'+
+'<div class="seg"><button data-act="view" data-v="a" aria-pressed="'+(S.v==='a')+'">Em andamento</button><button data-act="view" data-v="h" aria-pressed="'+(S.v==='h')+'">Histórico</button></div>'+
+'<div class="bar"><label>Busca<input data-f="q" value="'+esc(S.f.q||'')+'" placeholder="Título ou descrição"></label>'+
+'<label>Status<select data-f="status"><option value="">Todos</option>'+sts.map(s=>'<option'+(S.f.status===s?' selected':'')+'>'+s+'</option>').join('')+'</select></label>'+
+(usr?'':'<label>Técnico<select data-f="tec"><option value="">Todos</option><option value="0"'+(S.f.tec==='0'?' selected':'')+'>Sem técnico</option>'+db.tec.map(t=>'<option value="'+t.id+'"'+(S.f.tec===String(t.id)?' selected':'')+'>'+esc(t.nome)+'</option>').join('')+'</select></label>')+
+'<label>De<input type="date" data-f="de" value="'+(S.f.de||'')+'"></label><label>Até<input type="date" data-f="ate" value="'+(S.f.ate||'')+'"></label>'+
+'<button class="btn ghost" data-act="clr">Limpar filtros</button></div><div class="wrap" id="tbl"></div>'}
+function tbl(){let L=filt(vis(),S.f).filter(c=>(S.v==='a')===ACT.includes(c.status)).sort((a,b)=>b.id-a.id);
+$('#cnt').textContent=L.length+' chamado(s)';
+$('#tbl').innerHTML=L.length?'<table><thead><tr><th>#</th><th>Título</th><th>Solicitante</th><th>Técnico</th><th>Prioridade</th><th>Status</th><th>Abertura</th></tr></thead><tbody>'+L.map(c=>'<tr><td>'+c.id+'</td><td><button class="lnk" data-act="det" data-id="'+c.id+'">'+esc(c.titulo)+'</button></td><td>'+esc(un(c.usr))+'</td><td>'+esc(tn(c.tec))+'</td><td>'+ptag(c.prio)+'</td><td>'+tag(c)+'</td><td>'+fd(c.abertura)+'</td></tr>').join('')+'</tbody></table>':'<p class="empty">'+(Object.values(S.f).some(Boolean)?'Nenhum chamado encontrado com estes filtros.':S.v==='a'?'Nenhum chamado em andamento.':'O histórico está vazio.')+'</p>'}
+function det(id){const c=getC(id);if(!c)return;const r=S.u.role,ativo=ACT.includes(c.status),mine=r==='tec'&&c.tec===S.u.id;let b='';
+if(ativo){
+if(r==='adm')b+='<button type="button" class="btn ghost sm" data-act="assign" data-id="'+id+'">Atribuir técnico</button><button type="button" class="btn ghost sm" data-act="editc" data-id="'+id+'">Editar</button>';
+if(r==='usr'&&c.status==='Aberto')b+='<button type="button" class="btn ghost sm" data-act="editc" data-id="'+id+'">Editar</button>';
+if(r==='tec'&&c.status==='Aberto'&&(!c.tec||mine))b+='<button type="button" class="btn sm" data-act="start" data-id="'+id+'">'+(c.tec?'Iniciar atendimento':'Assumir e iniciar')+'</button>';
+if(mine&&c.status==='Em Atendimento')b+='<button type="button" class="btn sm" data-act="resolve" data-id="'+id+'">Registrar solução</button>';
+if(r==='adm'||mine||(r==='usr'&&c.usr===S.u.id))b+='<button type="button" class="btn ghost sm" data-act="cancel" data-id="'+id+'">Cancelar chamado</button>'}
+if(r==='adm')b+=c.status==='Resolvido'?'<button type="button" class="btn ghost sm" disabled title="RN06: chamados resolvidos não podem ser excluídos">Excluir</button>':'<button type="button" class="btn dan sm" data-act="delc" data-id="'+id+'">Excluir</button>';
+modal('Chamado #'+c.id,'<dl><dt>Título</dt><dd><b>'+esc(c.titulo)+'</b></dd><dt>Status</dt><dd>'+tag(c)+' '+ptag(c.prio)+'</dd><dt>Solicitante</dt><dd>'+esc(un(c.usr))+'</dd><dt>Técnico</dt><dd>'+esc(tn(c.tec))+'</dd><dt>Abertura</dt><dd>'+fd(c.abertura)+'</dd><dt>Fechamento</dt><dd>'+fd(c.fechamento)+'</dd><dt>Descrição</dt><dd>'+esc(c.desc)+'</dd>'+(c.solucao?'<dt>Solução</dt><dd>'+esc(c.solucao)+'</dd>':'')+'</dl><h2>Histórico</h2><ul class="tl">'+c.hist.map(h=>'<li>'+esc(h.t)+'<small>'+fdt(h.d)+'</small></li>').join('')+'</ul>'+(b?'<div class="acts" style="justify-content:flex-start;margin:0 0 14px">'+b+'</div>':''),null)}
+/* ---------- ações ---------- */
+const A={
+close:()=>{nx=null;closeM()},
+nav:(i,b)=>{S.p=b.dataset.p;S.v='a';S.f={};S.rel=null;render()},
+out:()=>{S.u=null;S.p='dash';S.f={};S.rel=null;iniciar()},
+view:(i,b)=>{S.v=b.dataset.v;S.f={};render()},
+clr:()=>{S.f={};render()},
+new:(i,b)=>formCrud(b.dataset.k),
+ed:(i,b)=>formCrud(b.dataset.k,i),
+del:(i,b)=>{const k=b.dataset.k,r=db[k].find(x=>x.id===i);if(!r)return;
+const n=db.cha.filter(c=>k==='tec'?c.tec===i:c.usr===i).length;
+if(n)return toast('Não é possível excluir: há '+n+' chamado(s) vinculado(s) a '+r.nome+'.');
+conf('Excluir '+CR[k].s,'Excluir <b>'+esc(r.nome)+'</b>? Esta ação não pode ser desfeita.',()=>api('DELETE','/'+(k==='tec'?'tecnicos':'usuarios')+'/'+i).then(load).then(ok('Cadastro excluído.')).catch(e=>e.message),'Excluir')},
+newc:()=>formC(),
+editc:i=>{nx=()=>det(i);formC(i)},
+det:i=>det(i),
+assign:i=>{const c=getC(i);nx=()=>det(i);
+modal('Atribuir técnico','<label>Técnico responsável'+'<select name="tec">'+db.tec.map(t=>'<option value="'+t.id+'"'+(c.tec===t.id?' selected':'')+'>'+esc(t.nome)+' – '+esc(t.esp)+'</option>').join('')+'</select></label>',o=>{
+if(!o.tec)return 'Selecione um técnico.';return api('PUT','/chamados/'+i+'/tecnico',{tec:+o.tec}).then(load).then(ok('Técnico atribuído.')).catch(e=>e.message)},'Atribuir')},
+start:i=>api('POST','/chamados/'+i+'/iniciar').then(load).then(()=>{toast('Chamado em atendimento.');$('#M').hidden=true;render();det(i)}).catch(e=>toast(e.message)),
+resolve:i=>{nx=()=>det(i);
+modal('Registrar solução','<label>Solução aplicada<textarea name="s" rows="4"></textarea></label>',o=>{
+if(o.s.trim().length<5)return 'Descreva a solução aplicada.';return api('POST','/chamados/'+i+'/resolver',{solucao:o.s.trim()}).then(load).then(ok('Chamado resolvido.')).catch(e=>e.message)},'Resolver chamado')},
+cancel:i=>{const c=getC(i);nx=()=>det(i);conf('Cancelar chamado','Cancelar o chamado <b>#'+c.id+'</b>?',()=>api('POST','/chamados/'+i+'/cancelar').then(load).then(ok('Chamado cancelado.')).catch(e=>e.message))},
+delc:i=>{const c=getC(i);if(c.status==='Resolvido')return;conf('Excluir chamado','Excluir o chamado <b>#'+c.id+'</b>? Esta ação não pode ser desfeita.',()=>api('DELETE','/chamados/'+i).then(load).then(ok('Chamado excluído.')).catch(e=>e.message),'Excluir')},
+login:()=>{const r=$('#lp').value,w=+$('#lw').value||0;
+api('POST','/login',{perfil:r,id:w}).then(u=>{S.u=u;return load()}).then(()=>{S.p='dash';render()}).catch(e=>{S.u=null;toast(e.message)})},
+gen:()=>{S.rel={tipo:$('#rt').value,de:$('#rd').value,ate:$('#ra').value};
+if(S.rel.de&&S.rel.ate&&S.rel.de>S.rel.ate){S.rel=null;$('#relOut').innerHTML='';return toast('A data inicial não pode ser maior que a final.')}
+$('#relOut').innerHTML=relHTML(S.rel)},
+pdf:async()=>{if(!S.rel)return toast('Gere o relatório antes de exportar.');
+try{const q=new URLSearchParams({tipo:S.rel.tipo,de:S.rel.de||'',ate:S.rel.ate||''});
+const r=await fetch('/api/relatorios/pdf?'+q,{headers:{'X-Perfil':S.u.role,'X-Id':S.u.id}});
+if(!r.ok){let j=null;try{j=await r.json()}catch(e){}throw new Error((j&&j.erro)||'Erro ao gerar o PDF.')}
+const a=document.createElement('a');a.href=URL.createObjectURL(await r.blob());a.download='relatorio-'+S.rel.tipo+'.pdf';document.body.appendChild(a);a.click();a.remove()}catch(e){toast(e.message)}}
+};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b||b.disabled)return;const f=A[b.dataset.act];if(f)f(+b.dataset.id,b)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#M').hidden)A.close()});
+document.addEventListener('input',e=>{const t=e.target;
+if(t.dataset.m)t.value=MK[t.dataset.m](t.value);
+if(t.dataset.f){S.f[t.dataset.f]=t.value;tbl()}});
+document.addEventListener('change',e=>{if(e.target.id==='lp')loginOpts()});
+/* ---------- relatórios ---------- */
+function relHTML(o){const L=filt(db.cha,o).sort((a,b)=>a.abertura.localeCompare(b.abertura)||a.id-b.id);
+const T={per:'Chamados por período',tec:'Chamados por técnico',status:'Chamados por status'}[o.tipo];
+const key=c=>o.tipo==='tec'?tn(c.tec):o.tipo==='status'?c.status:c.abertura.slice(5,7)+'/'+c.abertura.slice(0,4);
+const lab=o.tipo==='per'?(k=>k):(k=>k);let ks=[...new Set(L.map(key))];
+if(o.tipo==='per')ks.sort((a,b)=>(a.slice(3)+a.slice(0,2)).localeCompare(b.slice(3)+b.slice(0,2)));else if(o.tipo==='status')ks.sort((a,b)=>ST.indexOf(a)-ST.indexOf(b));else ks.sort((a,b)=>a.localeCompare(b));
+const per=(o.de||o.ate)?fd(o.de)+' a '+fd(o.ate):'Todo o período';
+let h='<div class="rh"><b>UniATENEU – SGCTI</b></div><h2>'+T+'</h2><p class="sub">Período: '+per+'. Emitido em '+fd(today())+' por '+esc(S.u.nome)+'.</p>';
+if(!L.length)return h+'<p class="empty">Nenhum chamado no período informado.</p>';
+h+='<div class="wrap"><table><thead><tr><th>'+(o.tipo==='tec'?'Técnico':o.tipo==='status'?'Status':'Mês')+'</th><th>Total</th>'+ST.map(s=>'<th>'+s+'</th>').join('')+'</tr></thead><tbody>'+
+ks.map(k=>{const g=L.filter(c=>key(c)===k);return '<tr><td>'+esc(lab(k))+'</td><td><b>'+g.length+'</b></td>'+ST.map(s=>'<td>'+g.filter(c=>c.status===s).length+'</td>').join('')+'</tr>'}).join('')+
+'<tr><td><b>Total geral</b></td><td><b>'+L.length+'</b></td>'+ST.map(s=>'<td><b>'+L.filter(c=>c.status===s).length+'</b></td>').join('')+'</tr></tbody></table></div>';
+h+='<h2 style="margin-top:18px">Detalhamento</h2><div class="wrap"><table><thead><tr><th>#</th><th>Título</th><th>Solicitante</th><th>Técnico</th><th>Prioridade</th><th>Status</th><th>Abertura</th><th>Fechamento</th></tr></thead><tbody>'+
+L.map(c=>'<tr><td>'+c.id+'</td><td>'+esc(c.titulo)+'</td><td>'+esc(un(c.usr))+'</td><td>'+esc(tn(c.tec))+'</td><td>'+c.prio+'</td><td>'+c.status+'</td><td>'+fd(c.abertura)+'</td><td>'+fd(c.fechamento)+'</td></tr>').join('')+'</tbody></table></div>';return h}
+function pgRel(){const o=S.rel||{tipo:'per'};
+return '<div class="noprint"><h1>Relatórios</h1><p class="sub">Gere o relatório e exporte em PDF pela impressão do navegador (escolha “Salvar como PDF”).</p>'+
+'<div class="bar"><label>Tipo<select id="rt"><option value="per">Chamados por período</option><option value="tec"'+(o.tipo==='tec'?' selected':'')+'>Chamados por técnico</option><option value="status"'+(o.tipo==='status'?' selected':'')+'>Chamados por status</option></select></label>'+
+'<label>De<input type="date" id="rd" value="'+(o.de||'')+'"></label><label>Até<input type="date" id="ra" value="'+(o.ate||'')+'"></label>'+
+'<button class="btn" data-act="gen">Gerar relatório</button><button class="btn ghost" data-act="pdf">Exportar PDF</button></div></div><div id="relOut">'+(S.rel?relHTML(S.rel):'')+'</div>'}
+/* ---------- painel ---------- */
+function pgDash(){const L=vis(),r=S.u.role,K={'Aberto':'--a','Em Atendimento':'--e','Resolvido':'--r','Cancelado':'--c'};
+const n=s=>L.filter(c=>c.status===s).length,mx=Math.max(1,...ST.map(n));
+const urg=L.filter(c=>ACT.includes(c.status)&&c.prio==='Alta').sort((a,b)=>b.id-a.id);
+const fila=r==='tec'?L.filter(c=>c.status==='Aberto'&&!c.tec).length:0;
+return '<h1>Olá, '+esc(S.u.nome.split(' ')[0])+'</h1><p class="sub">'+(r==='adm'?'Visão geral de todos os chamados.':r==='tec'?'Acompanhe a fila de atendimento. '+(fila?fila+' chamado(s) aguardando técnico.':''):'Acompanhe seus chamados de suporte.')+'</p>'+
+'<div class="grid">'+ST.map(s=>'<div class="card kpi" style="--k:var('+K[s]+')"><b>'+n(s)+'</b><span>'+s+'</span></div>').join('')+'</div>'+
+'<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))"><div class="card"><h2>Chamados por status</h2><div class="bars">'+ST.map(s=>'<div style="--k:var('+K[s]+')"><span>'+s+'</span><i style="width:'+Math.round(n(s)/mx*100)+'%"></i><b>'+n(s)+'</b></div>').join('')+'</div></div>'+
+'<div class="card"><h2>Prioridade alta em andamento</h2>'+(urg.length?'<ul style="margin:0;padding-left:18px">'+urg.map(c=>'<li><button class="lnk" data-act="det" data-id="'+c.id+'">#'+c.id+' '+esc(c.titulo)+'</button> '+tag(c)+'</li>').join('')+'</ul>':'<p class="sub" style="margin:0">Nenhum chamado urgente em andamento.</p>')+'</div></div>'}
+/* ---------- render ---------- */
+function loginOpts(){const r=$('#lp').value,w=$('#lw'),l=r==='tec'?db.tec:db.usr;
+$('#lwl').style.display=r==='adm'?'none':'block';$('#lwl').firstChild.textContent=r==='tec'?'Técnico':'Usuário';
+w.innerHTML=l.map(x=>'<option value="'+x.id+'">'+esc(x.nome)+'</option>').join('')}
+function render(){const app=$('#app');
+if(!S.u){app.innerHTML='<div class="login"><div class="card"><h1>SGCTI</h1><p class="sub">Sistema de Gerenciamento de Chamados de TI</p><label style="display:block;font-size:13px;color:var(--mut);margin-bottom:12px">Perfil de acesso<select id="lp"><option value="adm">Administrador de TI</option><option value="tec">Técnico</option><option value="usr">Usuário solicitante</option></select></label><label id="lwl" style="display:none;font-size:13px;color:var(--mut);margin-bottom:12px">Usuário<select id="lw"></select></label><button class="btn" style="width:100%" data-act="login">Entrar</button><p class="sub" style="margin:14px 0 0;font-size:12px">Login simplificado por perfil, sem senha. As permissões são conferidas pelo servidor (RNF05).</p></div></div>';loginOpts();return}
+const r=S.u.role,pg=[['dash','Painel']].concat([['cha',r==='usr'?'Meus chamados':'Chamados']],r==='adm'?[['tec','Técnicos'],['usr','Usuários'],['rel','Relatórios']]:[]);
+if(!pg.some(x=>x[0]===S.p))S.p='dash';
+app.innerHTML='<header class="noprint"><span class="brand">SGCTI<small>Chamados de TI</small></span><nav aria-label="Principal">'+pg.map(x=>'<button data-act="nav" data-p="'+x[0]+'"'+(S.p===x[0]?' aria-current="page"':'')+'>'+x[1]+'</button>').join('')+'</nav><span class="who">'+esc(S.u.nome)+' ('+{adm:'Administrador',tec:'Técnico',usr:'Solicitante'}[r]+')<button class="btn ghost sm" style="color:#fff;border-color:#ffffff55" data-act="out">Sair</button></span></header><main>'+
+({dash:pgDash,cha:pgCha,tec:()=>pgCrud('tec'),usr:()=>pgCrud('usr'),rel:pgRel}[S.p])()+'</main>';
+if(S.p==='cha')tbl()}
+function iniciar(){api('GET','/login/opcoes').then(o=>{db={tec:o.tec,usr:o.usr,cha:[]};render()}).catch(e=>{render();toast(e.message)})}
+iniciar();
+</script>
+</body>
+</html>
