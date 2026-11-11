@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # SGCTI – Sistema de Gerenciamento de Chamados de TI
 
 Java 17 + Spring Boot 3.3.5, JDBC (JdbcTemplate) e MySQL 8.0.16+. Relatórios em PDF com OpenPDF.
@@ -20,7 +19,3 @@ Use sempre o `database/sgcti_db.sql` deste projeto; o script original não tem a
 - **Usuário solicitante:** abre chamados, vê só os seus, edita e cancela enquanto estiverem Abertos.
 
 Login simplificado por perfil, sem senha. As permissões são conferidas no servidor (cabeçalhos `X-Perfil` e `X-Id`).
-=======
-# Sistema-de-Gerenciamento-de-Chamados-de-TI-SGCTI-
-np1 objetiva
->>>>>>> e92a4162cdf72f9a88b50d945f8ad9837b9c21dc
