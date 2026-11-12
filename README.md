@@ -1,6 +1,6 @@
 # SGCTI – Sistema de Gerenciamento de Chamados de TI
 
-> **Projeto acadêmico** desenvolvido na disciplina de Engenharia de Software da UniAteneu, com escopo básico definido pelo professor. Serve para praticar arquitetura em camadas, acesso a banco com JDBC e regras de permissão; não é um sistema completo para uso em produção.
+> **Projeto acadêmico em grupo** desenvolvido na disciplina de Engenharia de Software da UniAteneu, com escopo básico definido pelo professor. Serve para praticar arquitetura em camadas, acesso a banco com JDBC e regras de permissão; não é um sistema completo para uso em produção.
 
 Java 17 + Spring Boot 3.3.5, JDBC (JdbcTemplate) e MySQL 8.0.16+. Relatórios em PDF com OpenPDF.
 Arquitetura MVC em camadas: `model`, `dao`, `service`, `controller`. A tela (HTML/CSS/JS) fica em `src/main/resources/static/index.html`.
@@ -21,3 +21,6 @@ Use sempre o `database/sgcti_db.sql` deste projeto; o script original não tem a
 - **Usuário solicitante:** abre chamados, vê só os seus, edita e cancela enquanto estiverem Abertos.
 
 Login simplificado por perfil, sem senha. As permissões são conferidas no servidor (cabeçalhos `X-Perfil` e `X-Id`).
+
+## Equipe
+Projeto feito em grupo. Contribuíram neste repositório: [@ArthurCoding](https://github.com/ArthurCoding) (criação e organização do repositório), [@wellington0812](https://github.com/wellington0812) (front-end) e [@PpedroAugusto](https://github.com/PpedroAugusto) (scripts do banco de dados).
