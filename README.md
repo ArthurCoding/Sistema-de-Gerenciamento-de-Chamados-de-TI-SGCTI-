@@ -1,5 +1,7 @@
 # SGCTI – Sistema de Gerenciamento de Chamados de TI
 
+> **Projeto acadêmico** desenvolvido na disciplina de Engenharia de Software da UniAteneu, com escopo básico definido pelo professor. Serve para praticar arquitetura em camadas, acesso a banco com JDBC e regras de permissão; não é um sistema completo para uso em produção.
+
 Java 17 + Spring Boot 3.3.5, JDBC (JdbcTemplate) e MySQL 8.0.16+. Relatórios em PDF com OpenPDF.
 Arquitetura MVC em camadas: `model`, `dao`, `service`, `controller`. A tela (HTML/CSS/JS) fica em `src/main/resources/static/index.html`.
 
